@@ -1,0 +1,37 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'com.gradle.plugin-publish' version '1.1.0'
+}
+
+group = 'de.0x3'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+gradlePlugin {
+    website = 'https://github.com/stefan-jaeger/gradle-cruft-plugin'
+    vcsUrl = 'https://github.com/stefan-jaeger/gradle-cruft-plugin'
+    plugins {
+        cruftPlugin {
+            id = 'de.0x3.cruft'
+            displayName = 'Plugin to integrate basic Cruft tasks into Gradle.'
+            description = 'A plugin to simplify cruft tasks in gradle builds.'
+            implementationClass = 'de.x3.gradle.plugin.cruft.CruftPlugin'
+            tags.set(['cruft'])
+        }
+    }
+}
+
+dependencies {
+    api gradleApi()
+
+    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-3.0'
+}
+
+test {
+    useJUnitPlatform()
+}
