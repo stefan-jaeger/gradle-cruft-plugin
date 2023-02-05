@@ -14,10 +14,6 @@ class CruftPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         project.extensions.create('cruft', CruftExtension)
-        project.extensions.cruft.extensions.create('check', CruftCheckExtension)
-        project.extensions.cruft.extensions.create('diff', CruftDiffExtension)
-        project.extensions.cruft.extensions.create('link', CruftLinkExtension)
-        project.extensions.cruft.extensions.create('update', CruftUpdateExtension)
 
         registerTask(
                 project,
@@ -28,12 +24,14 @@ class CruftPlugin implements Plugin<Project> {
         registerTask(
                 project,
                 'diffCruft',
-                'Show the diff between the project and the current cruft template', DiffCruftTask
+                'Show the diff between the project and the current cruft template',
+                DiffCruftTask
         )
         registerTask(
                 project,
                 'linkCruft',
-                'Link an existing project to a Cookiecutter template', LinkCruftTask
+                'Link an existing project to a Cookiecutter template',
+                LinkCruftTask
         )
         registerTask(
                 project,

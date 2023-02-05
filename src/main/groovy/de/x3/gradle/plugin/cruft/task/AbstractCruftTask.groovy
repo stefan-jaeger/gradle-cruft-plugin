@@ -3,6 +3,7 @@ package de.x3.gradle.plugin.cruft.task
 import de.x3.gradle.plugin.cruft.ext.CruftExtension
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.process.ExecOperations
 
@@ -29,6 +30,7 @@ abstract class AbstractCruftTask extends DefaultTask {
         this.printOutput = printOutput
     }
 
+    @Input
     abstract CruftTask getTaskType()
 
     abstract List<String> getArguments(CruftExtension ext);

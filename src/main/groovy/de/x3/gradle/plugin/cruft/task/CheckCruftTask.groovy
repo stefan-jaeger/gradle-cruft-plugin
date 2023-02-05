@@ -20,25 +20,22 @@ class CheckCruftTask extends AbstractCruftTask {
     }
 
     @Override
-    List<String> getArguments(CruftExtension ext) {
-        CruftCheckExtension checkExtension = ext.extensions.getByType(CruftCheckExtension)
+    List<String> getArguments(CruftExtension cruftExtension) {
+        CruftCheckExtension checkExtension = cruftExtension.check
         String[] args = []
 
-        if (checkExtension.projectDir != null && !checkExtension.projectDir.empty) {
-            args += ['-p', ext.check.projectDir]
-        } else if (ext.projectDir != null && !ext.projectDir.empty) {
-            args += ['-p', ext.projectDir]
+        def projectDir = cruftExtension.projectDir.orElse(checkExtension.projectDir)
+        if (projectDir.present && !projectDir.get().empty) {
+            args += ['-p', projectDir.get()]
         }
 
-        if (checkExtension.checkout != null && !checkExtension.checkout.empty) {
-            args += ['-c', checkExtension.checkout]
-        } else if (ext.checkout != null && !ext.checkout.empty) {
-            args += ['-c', ext.checkout]
+        def checkout = cruftExtension.checkout.orElse(checkExtension.projectDir)
+        if (checkout.present && !checkout.get().empty) {
+            args += ['-c', checkout.get()]
         }
 
-        if (!checkExtension.strict) {
-            args += '--not-strict'
-        } else if (!ext.strict) {
+        def strict = cruftExtension.strict.orElse(checkExtension.strict)
+        if (!strict.get()) {
             args += '--not-strict'
         }
 

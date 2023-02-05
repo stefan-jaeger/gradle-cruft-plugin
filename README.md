@@ -27,10 +27,12 @@ Features:
 ```groovy
 buildscript {
     repositories {
-        mavenCentral()
+      maven {
+        url "https://plugins.gradle.org/m2/"
+      }
     }
     dependencies {
-        classpath 'de.0x3.cruft:1.0.0'
+        classpath 'de.0x3.cruft:1.1.0'
     }
 }
 apply plugin: 'de.0x3.cruft'
@@ -39,8 +41,13 @@ apply plugin: 'de.0x3.cruft'
 OR
 
 ```groovy
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+  }
+}
 plugins {
-    id 'de.0x3.cruft' version '1.0.0'
+  id 'de.0x3.cruft' version '1.1.0'
 }
 ```
 
@@ -56,6 +63,7 @@ additionally all requirements of [cruft](https://github.com/cruft/cruft) apply t
 | Gradle | Version |
 |--------|---------|
 | 7.x    | 1.0.0   |
+| 7.x    | 1.1.0   |
 
 #### Python & Pip
 

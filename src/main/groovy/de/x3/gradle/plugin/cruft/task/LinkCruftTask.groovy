@@ -21,43 +21,42 @@ class LinkCruftTask extends AbstractCruftTask {
     }
 
     @Override
-    List<String> getArguments(CruftExtension ext) {
-        CruftLinkExtension linkExtension = ext.extensions.getByType(CruftLinkExtension)
+    List<String> getArguments(CruftExtension cruftExtension) {
+        CruftLinkExtension linkExtension = cruftExtension.link
         def args = ['-y']
 
-        if (linkExtension.projectDir != null && !linkExtension.projectDir.empty) {
-            args += ['-p', linkExtension.projectDir]
-        } else if (ext.projectDir != null && !ext.projectDir.empty) {
-            args += ['-p', ext.projectDir]
+        def projectDir = cruftExtension.projectDir.orElse(linkExtension.projectDir)
+        if (projectDir.present && !projectDir.get().empty) {
+            args += ['-p', projectDir.get()]
         }
 
-        if (linkExtension.checkout != null && !linkExtension.checkout.empty) {
-            args += ['-c', linkExtension.checkout]
-        } else if (ext.checkout != null && !ext.checkout.empty) {
-            args += ['-c', ext.checkout]
+        def checkout = cruftExtension.checkout.orElse(linkExtension.checkout)
+        if (checkout.present && !checkout.get().empty) {
+            args += ['-c', checkout.get()]
         }
 
-        if (linkExtension.configFile != null && !linkExtension.configFile.empty) {
+        if (linkExtension.configFile.present && !linkExtension.configFile.get().empty) {
             args += ['--config-file', linkExtension.configFile]
         }
 
-        if (linkExtension.defaultConfig) {
+        if (linkExtension.defaultConfig.get()) {
             args += '-d'
         }
 
-        if (linkExtension.extraContext != null && !linkExtension.extraContext.empty) {
-            args += ['--extra-context', linkExtension.extraContext]
+        if (linkExtension.extraContext.present && !linkExtension.extraContext.get().empty) {
+            args += ['--extra-context', linkExtension.extraContext.get()]
         }
 
-        if (linkExtension.directory != null && !linkExtension.directory) {
+        if (linkExtension.directory.present && !linkExtension.directory.get().empty) {
             args += ['--directory', linkExtension.directory]
         }
 
-        if (linkExtension.template == null || linkExtension.template.empty) {
+        if (!linkExtension.template.present || linkExtension.template.get().empty) {
             throw new GradleException("Template must be specified in the cruft config.")
         }
 
-        args += linkExtension.template
+        args += linkExtension.template.get()
+
         args
     }
 }

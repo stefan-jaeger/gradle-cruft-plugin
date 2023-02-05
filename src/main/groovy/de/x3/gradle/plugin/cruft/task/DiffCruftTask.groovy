@@ -17,24 +17,23 @@ class DiffCruftTask extends AbstractCruftTask {
         super(execOperations, true)
     }
 
-    List<String> getArguments(CruftExtension ext) {
-        CruftDiffExtension diffExtension = ext.extensions.getByType(CruftDiffExtension)
+    @Override
+    List<String> getArguments(CruftExtension cruftExtension) {
+        CruftDiffExtension diffExtension = cruftExtension.diff
         def args = []
 
-        if (diffExtension.projectDir != null && !diffExtension.projectDir.empty) {
-            args += ['-p', diffExtension.projectDir]
-        } else if (ext.projectDir != null && !ext.projectDir.empty) {
-            args += ['-p', ext.projectDir]
+        def projectDir = cruftExtension.projectDir.orElse(diffExtension.projectDir)
+        if (projectDir.present && !projectDir.get().empty) {
+            args += ['-p', projectDir.get()]
         }
 
-        if (diffExtension.exitCode) {
+        if (diffExtension.exitCode.get()) {
             args += '-e'
         }
 
-        if (diffExtension.checkout != null && !diffExtension.checkout.empty) {
-            args += ['-c', diffExtension.checkout]
-        } else if (ext.checkout != null && !ext.checkout.empty) {
-            args += ['-c', ext.checkout]
+        def checkout = cruftExtension.checkout.orElse(diffExtension.checkout)
+        if (checkout.present && !checkout.get().empty) {
+            args += ['-c', checkout.get()]
         }
 
         args
