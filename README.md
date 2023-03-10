@@ -32,7 +32,7 @@ buildscript {
       }
     }
     dependencies {
-        classpath 'de.0x3.cruft:1.1.0'
+        classpath 'de.0x3.cruft:1.1.1'
     }
 }
 apply plugin: 'de.0x3.cruft'
@@ -47,7 +47,7 @@ pluginManagement {
   }
 }
 plugins {
-  id 'de.0x3.cruft' version '1.1.0'
+  id 'de.0x3.cruft' version '1.1.1'
 }
 ```
 
@@ -64,6 +64,7 @@ additionally all requirements of [cruft](https://github.com/cruft/cruft) apply t
 |--------|---------|
 | 7.x    | 1.0.0   |
 | 7.x    | 1.1.0   |
+| 7.x    | 1.1.1   |
 
 #### Python & Pip
 
