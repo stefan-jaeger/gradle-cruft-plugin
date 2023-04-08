@@ -14,11 +14,6 @@ class CheckCruftTask extends AbstractCruftTask {
     @Internal
     CruftTask taskType = CHECK
 
-    @Inject
-    CheckCruftTask(ExecOperations execOperations) {
-        super(execOperations)
-    }
-
     @Override
     List<String> getArguments(CruftExtension cruftExtension) {
         CruftCheckExtension checkExtension = cruftExtension.check

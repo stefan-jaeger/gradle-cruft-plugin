@@ -14,11 +14,6 @@ class UpdateCruftTask extends AbstractCruftTask {
     @Internal
     CruftTask taskType = UPDATE
 
-    @Inject
-    UpdateCruftTask(ExecOperations execOperations) {
-        super(execOperations)
-    }
-
     @Override
     List<String> getArguments(CruftExtension cruftExtension) {
         CruftUpdateExtension updateExtension = cruftExtension.update

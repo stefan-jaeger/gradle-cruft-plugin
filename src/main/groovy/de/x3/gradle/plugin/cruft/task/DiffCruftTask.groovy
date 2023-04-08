@@ -12,11 +12,6 @@ class DiffCruftTask extends AbstractCruftTask {
     @Internal
     CruftTask taskType = CruftTask.DIFF
 
-    @Inject
-    DiffCruftTask(ExecOperations execOperations) {
-        super(execOperations, true)
-    }
-
     @Override
     List<String> getArguments(CruftExtension cruftExtension) {
         CruftDiffExtension diffExtension = cruftExtension.diff

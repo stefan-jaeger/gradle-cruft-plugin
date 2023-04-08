@@ -1,7 +1,7 @@
 # Gradle Plugin for Cruft
 
 This Plugin integrated basic [Cruft](https://github.com/cruft/cruft) tasks as part of your build.
-This Plugin **does not install python pip or cruft itself**. A valid setup is mandatory for this Plugin to work.
+This Plugin **does not install python pip itself**. A valid setup is mandatory for this Plugin to work.
 
 See how to [install](https://github.com/cruft/cruft#installation) cruft.
 
@@ -13,6 +13,9 @@ Features:
 * Show the diff between the project and the current cruft template.
 * Link an existing project to a Cookiecutter template
 * Update the project to the latest version of the linked Cookiecutter template
+
+NOTE: This plugin is based on [use-python](https://github.com/xvik/gradle-use-python-plugin) plugin.
+Have a look at its documentation for custom python configurations.
 
 ## Documentation
 
@@ -32,7 +35,7 @@ buildscript {
       }
     }
     dependencies {
-        classpath 'de.0x3.cruft:1.1.1'
+        classpath 'de.0x3.cruft:1.2.0'
     }
 }
 apply plugin: 'de.0x3.cruft'
@@ -47,7 +50,7 @@ pluginManagement {
   }
 }
 plugins {
-  id 'de.0x3.cruft' version '1.1.1'
+  id 'de.0x3.cruft' version '1.2.0'
 }
 ```
 
@@ -65,6 +68,7 @@ additionally all requirements of [cruft](https://github.com/cruft/cruft) apply t
 | 7.x    | 1.0.0   |
 | 7.x    | 1.1.0   |
 | 7.x    | 1.1.1   |
+| 7.x    | 1.2.0   |
 
 #### Python & Pip
 
@@ -120,3 +124,4 @@ cruft {
 * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
 * [Python](https://www.python.org/)
 * [Pip](https://pypi.org/project/pip/)
+* [use-python](https://github.com/xvik/gradle-use-python-plugin)

@@ -15,11 +15,6 @@ class LinkCruftTask extends AbstractCruftTask {
     @Internal
     CruftTask taskType = LINK
 
-    @Inject
-    LinkCruftTask(ExecOperations execOperations) {
-        super(execOperations)
-    }
-
     @Override
     List<String> getArguments(CruftExtension cruftExtension) {
         CruftLinkExtension linkExtension = cruftExtension.link

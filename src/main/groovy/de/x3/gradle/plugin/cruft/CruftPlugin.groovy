@@ -8,12 +8,21 @@ import de.x3.gradle.plugin.cruft.task.UpdateCruftTask
 import org.gradle.api.DefaultTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import ru.vyarus.gradle.plugin.python.PythonExtension
+import ru.vyarus.gradle.plugin.python.PythonPlugin
 
 class CruftPlugin implements Plugin<Project> {
+
+    private static String[] DEFAULT_MODULES = [
+            'cookiecutter:2.1.1',
+            'cruft:2.14.0'
+    ]
 
     @Override
     void apply(Project project) {
         project.extensions.create('cruft', CruftExtension)
+        project.plugins.apply(PythonPlugin)
+        project.extensions.getByType(PythonExtension).pip(DEFAULT_MODULES)
 
         registerTask(
                 project,

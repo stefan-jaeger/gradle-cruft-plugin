@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'de.0x3'
-version = '1.1.1'
+version = '1.2.0'
 
 repositories {
     mavenCentral()
@@ -26,8 +26,11 @@ gradlePlugin {
     }
 }
 
+ext.pythonPlugin = '3.0.0'
+
 dependencies {
     api gradleApi()
+    implementation "ru.vyarus:gradle-use-python-plugin:$pythonPlugin"
 
     testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-3.0'
 }
